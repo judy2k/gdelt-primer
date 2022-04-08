@@ -1,0 +1,4 @@
+set dotenv-load := false
+
+clean:
+    rm -rf *.egg-info dist build
