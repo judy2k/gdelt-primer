@@ -1,3 +1,4 @@
 requests
 click
 pymongo[srv]
+arrow

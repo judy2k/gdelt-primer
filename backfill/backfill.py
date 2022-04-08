@@ -197,10 +197,9 @@ def upload(zip_uri, mdb_uri, download_id):
                     z.extract(item, path=temp_dir)
                     extracted_file = temp_path / item.filename
                     converted_file = temp_path / (item.filename + "_converted")
-                    with (
-                        open(extracted_file, "r") as extracted_in,
-                        open(converted_file, "w") as converted_out,
-                    ):
+                    with open(extracted_file, "r") as extracted_in, open(
+                        converted_file, "w"
+                    ) as converted_out:
                         csv_out = csv.writer(converted_out, dialect="excel-tab")
                         for row in csv.reader(extracted_in, dialect="excel-tab"):
                             csv_out.writerow(row + [download_id])
