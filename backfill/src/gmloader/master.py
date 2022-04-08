@@ -1,5 +1,6 @@
 import gzip
 import pathlib
+import re
 
 
 URI_MATCH = re.compile(
@@ -7,7 +8,7 @@ URI_MATCH = re.compile(
 )
 
 
-def master_exports(path):
+def master_exports(path="master.txt.gz"):
     with gzip.open(path, "rt", encoding="utf-8") as master_file:
         master_lines = master_file.readlines()
     rows = [line.strip().split(" ") for line in reversed(master_lines)]

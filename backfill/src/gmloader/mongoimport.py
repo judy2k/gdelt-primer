@@ -5,6 +5,12 @@ import tempfile
 from zipfile import ZipFile
 
 import requests
+import subprocess
+
+
+def add_download_id(row_generator, download_id):
+    for row in row_generator:
+        yield row + [download_id]
 
 
 def upload(zip_uri, mdb_uri, download_id):
@@ -24,8 +30,11 @@ def upload(zip_uri, mdb_uri, download_id):
                         converted_file, "w"
                     ) as converted_out:
                         csv_out = csv.writer(converted_out, dialect="excel-tab")
-                        for row in csv.reader(extracted_in, dialect="excel-tab"):
-                            csv_out.writerow(row + [download_id])
+                        csv_out.writerows(
+                            add_download_id(
+                                csv.reader(extracted_in, dialect="excel-tab")
+                            )
+                        )
                     subprocess.run(
                         [
                             "mongoimport",
