@@ -2,3 +2,5 @@ set dotenv-load := false
 
 clean:
     rm -rf *.egg-info dist build
+    find src -name '*.egg-info' -delete
+    find src -name __pycache__ -delete
