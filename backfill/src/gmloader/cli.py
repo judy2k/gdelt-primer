@@ -14,7 +14,6 @@ from zipfile import ZipFile
 import click
 import pathlib
 from pymongo import MongoClient
-import requests
 
 from .master import master_exports
 from .mongoimport import upload
